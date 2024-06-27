@@ -80,6 +80,15 @@ public class DB_Products {
         }
         return true ;
     }
+    public boolean check_inventory(int id){
+
+        for(int i = 0 ; i<getList_of_products().size() ; ++i){
+            if(getList_of_products().get(i).getInventory() >= 1){
+                return true ;
+            }
+        }
+        return false ;
+    }
 
     public void add_to_database(int new_id , String new_category , String new_name , long new_price , int new_inventory , int new_rating , String new_filePath){
 
@@ -236,6 +245,7 @@ public class DB_Products {
             System.out.println("This ID doesn't exist");
         }
     }
+
     public void edit_inventory(int wanted_id , int new_inventory){
 
         boolean is_find_for_edit = false ;
@@ -248,7 +258,7 @@ public class DB_Products {
             //FIRST WE SHOULD EDIT PRICE IN DATABASE
             try{
                 Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
-                Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE , ResultSet.CONCUR_UPDATABLE);
                 String SQL_query = "SELECT * FROM Products";
                 ResultSet rs = stmt.executeQuery(SQL_query);
 
@@ -424,7 +434,7 @@ public class DB_Products {
             return null ;
         }
     }
-    public ArrayList<Products> sort_by__rating(){
+    public ArrayList<Products> sort_by_rating(){
 
         try{
             Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
