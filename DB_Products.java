@@ -1,7 +1,9 @@
 package sign;
 
+import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.*;
 
@@ -53,6 +55,7 @@ public class DB_Products {
                 list_of_products.add(new Products(id , category , name , price , inventory , rating , filePath)) ;
             }
             rs.beforeFirst();
+            rs.close();
         }
         catch (SQLException e){
             System.out.println(e.getMessage());
@@ -390,13 +393,98 @@ public class DB_Products {
         }
         return found_products ;
     }
-    
+
+    public ArrayList<Products> sort_by_price(){
+
+        try{
+            Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String SQL_query = "SELECT * FROM Products order by price desc";
+            ResultSet rs = stmt.executeQuery(SQL_query);
+
+            ArrayList<Products> sorted_products_by_price = new ArrayList<>() ;
+
+            while (rs.next()){
+                int id =rs.getInt("ID") ;
+                String category = rs.getString("category") ;
+                String name = rs.getString("name") ;
+                long price = rs.getLong("price") ;
+                int inventory = rs.getInt("inventory") ;
+                int rating = rs.getInt("rating") ;
+                String filePath = rs.getString("filePath") ;
+                sorted_products_by_price.add(new Products(id , category , name , price , inventory , rating , filePath)) ;
+            }
+
+            rs.beforeFirst();
+            rs.close();
+            return sorted_products_by_price ;
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null ;
+        }
+    }
+    public ArrayList<Products> sort_by__rating(){
+
+        try{
+            Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String SQL_query = "SELECT * FROM Products order by rating desc";
+            ResultSet rs = stmt.executeQuery(SQL_query);
+
+            ArrayList<Products> sorted_products_by_rating = new ArrayList<>() ;
+
+            while(rs.next()){
+                int id = rs.getInt("ID") ;
+                String category  =rs.getString("category") ;
+                String name = rs.getString("name") ;
+                long price = rs.getLong("price") ;
+                int inventory = rs.getInt("inventory") ;
+                int rating = rs.getInt("rating") ;
+                String filePath = rs.getString("filePath") ;
+                sorted_products_by_rating.add(new Products(id , category , name , price , inventory , rating , filePath)) ;
+            }
+
+            rs.beforeFirst();
+            rs.close();
+            return sorted_products_by_rating ;
+
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+            return null ;
+        }
+    }
+
+    public Object[][] show_products_for_manager(){
+
+        Object[][] all_products_for_table = new Object[getList_of_products().size()][7] ;
+
+        for(int i = 0 ; i <getList_of_products().size() ; ++i){
+            all_products_for_table[i][0] = getList_of_products().get(i).getID() ;
+            all_products_for_table[i][1] = getList_of_products().get(i).getCategory() ;
+            all_products_for_table[i][2] = getList_of_products().get(i).getName() ;
+            all_products_for_table[i][3] = getList_of_products().get(i).getPrice() ;
+            all_products_for_table[i][4] = getList_of_products().get(i).getInventory() ;
+            all_products_for_table[i][5] = getList_of_products().get(i).getRating() ;
+            all_products_for_table[i][6] = getList_of_products().get(i).getFilePath() ;
+        }
+       return all_products_for_table ;
+
+    }
+
+
     public static void main(String[] args) {
         DB_Products dbProducts = new DB_Products() ;
-        System.out.println( dbProducts.getList_of_products() );
-        System.out.println(dbProducts.find_product(2) );
+     //    System.out.println( dbProducts.getList_of_products() );
+        // System.out.println(dbProducts.find_product(2) );
         ArrayList<Products> result1 = dbProducts.search_name("m");
         ArrayList<Products> result2 = dbProducts.search_category("di") ;
-        System.out.println(result2);
+       // System.out.println(result2);
+       // System.out.println(dbProducts.sort_by_price()) ;
+      //  System.out.println(dbProducts.sort_by__rating());
+        Object[][] result = dbProducts.show_products_for_manager() ;
+        System.out.println(Arrays.deepToString(result));
+
     }
 }
