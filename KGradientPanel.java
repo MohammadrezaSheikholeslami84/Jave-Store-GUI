@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+package sign;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -20,10 +17,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
-/**
- *
- * @author oXCToo
- */
+
 public class KGradientPanel extends JPanel {
 
     public Color kStartColor = Color.MAGENTA;
@@ -65,6 +59,8 @@ public class KGradientPanel extends JPanel {
 
 
 
+
+
     public KGradientPanel() {
 
         if (kTransparentControls) {
@@ -77,7 +73,7 @@ public class KGradientPanel extends JPanel {
 
     @Override
     public synchronized void addMouseMotionListener(MouseMotionListener l) {
-        super.addMouseMotionListener(l); //To change body of generated methods, choose Tools | Templates.
+        super.addMouseMotionListener(l);
     }
 
     @Override
