@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.regex.*;
 
 public class DB_Products {
-    private ArrayList<Products> list_of_products = new ArrayList<>() ;
+    private ArrayList<sign.Products> list_of_products = new ArrayList<>() ;
     private final String url = "jdbc:mysql://root@localhost:3306/Store_Project" ;
     private final String username = "root" ;
     private final String password = "1284iliya" ;
 
-    public ArrayList<Products> getList_of_products() {
+    public ArrayList<sign.Products> getList_of_products() {
         return list_of_products;
     }
 
-    public void setList_of_products(ArrayList<Products> list_of_products) {
+    public void setList_of_products(ArrayList<sign.Products> list_of_products) {
         this.list_of_products = list_of_products;
     }
 
@@ -52,7 +52,7 @@ public class DB_Products {
                 int inventory = rs.getInt("inventory") ;
                 int rating = rs.getInt("rating") ;
                 String filePath = rs.getString("filePath") ;
-                list_of_products.add(new Products(id , category , name , price , inventory , rating , filePath)) ;
+                list_of_products.add(new sign.Products(id , category , name , price , inventory , rating , filePath)) ;
             }
             rs.beforeFirst();
             rs.close();
@@ -66,7 +66,7 @@ public class DB_Products {
         boolean id_does_not_exist = checkID(new_id) ;
         if( id_does_not_exist){
             add_to_database(new_id , new_category , new_name , new_price , new_inventory , new_rating , new_filePath); //ADD TO DATABASE
-            getList_of_products().add(new Products(new_id , new_category , new_name , new_price , new_inventory , new_rating , new_filePath)) ; // ADD TO ARRAYLIST
+            getList_of_products().add(new sign.Products(new_id , new_category , new_name , new_price , new_inventory , new_rating , new_filePath)) ; // ADD TO ARRAYLIST
         }
         else{
             System.out.println("This ID already exists!");
@@ -367,7 +367,7 @@ public class DB_Products {
             System.out.println("This ID doesn't exist");
         }
     }
-    public Products find_product(int wanted_id){
+    public sign.Products find_product(int wanted_id){
         for(int i = 0 ; i < getList_of_products().size() ; ++i){
             if(getList_of_products().get(i).getID() == wanted_id){
                 return getList_of_products().get(i) ;
@@ -375,36 +375,36 @@ public class DB_Products {
         }
         return null ;
     }
-    public ArrayList<Products> search_name(String text_in_search_field ){
+    public ArrayList<sign.Products> search_name(String text_in_search_field ){
 
         Pattern search_pattern = Pattern.compile("\\b\\w*" + text_in_search_field + "\\w*\\b" , Pattern.CASE_INSENSITIVE) ;
-        ArrayList<Products> found_products = new ArrayList<>() ;
+        ArrayList<sign.Products> found_products = new ArrayList<>() ;
 
         for(int i = 0 ; i < getList_of_products().size() ; ++i){
             Matcher matcher_name = search_pattern.matcher(getList_of_products().get(i).getName()) ;
             while (matcher_name.find()) {
                 found_products.add(getList_of_products().get(i)) ;
-                System.out.println(STR."Match found: \{matcher_name.group()}");
+              //  System.out.println(STR."Match found: \{matcher_name.group()}");
             }
         }
         return found_products ;
     }
-    public ArrayList<Products> search_category(String text_in_search_field ){
+    public ArrayList<sign.Products> search_category(String text_in_search_field ){
 
         Pattern search_pattern = Pattern.compile("\\b\\w*" + text_in_search_field + "\\w*\\b" , Pattern.CASE_INSENSITIVE) ;
-        ArrayList<Products> found_products = new ArrayList<>() ;
+        ArrayList<sign.Products> found_products = new ArrayList<>() ;
 
         for(int i = 0 ; i < getList_of_products().size() ; ++i){
             Matcher matcher_category = search_pattern.matcher(getList_of_products().get(i).getCategory()) ;
             while (matcher_category.find()) {
                 found_products.add(getList_of_products().get(i)) ;
-                System.out.println(STR."Match found: \{matcher_category.group()}");
+              //  System.out.println(STR."Match found: \{matcher_category.group()}");
             }
         }
         return found_products ;
     }
 
-    public ArrayList<Products> sort_by_price(){
+    public ArrayList<sign.Products> sort_by_price(){
 
         try{
             Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
@@ -412,7 +412,7 @@ public class DB_Products {
             String SQL_query = "SELECT * FROM Products order by price desc";
             ResultSet rs = stmt.executeQuery(SQL_query);
 
-            ArrayList<Products> sorted_products_by_price = new ArrayList<>() ;
+            ArrayList<sign.Products> sorted_products_by_price = new ArrayList<>() ;
 
             while (rs.next()){
                 int id =rs.getInt("ID") ;
@@ -422,7 +422,7 @@ public class DB_Products {
                 int inventory = rs.getInt("inventory") ;
                 int rating = rs.getInt("rating") ;
                 String filePath = rs.getString("filePath") ;
-                sorted_products_by_price.add(new Products(id , category , name , price , inventory , rating , filePath)) ;
+                sorted_products_by_price.add(new sign.Products(id , category , name , price , inventory , rating , filePath)) ;
             }
 
             rs.beforeFirst();
@@ -434,7 +434,7 @@ public class DB_Products {
             return null ;
         }
     }
-    public ArrayList<Products> sort_by_rating(){
+    public ArrayList<sign.Products> sort_by_rating(){
 
         try{
             Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
@@ -442,7 +442,7 @@ public class DB_Products {
             String SQL_query = "SELECT * FROM Products order by rating desc";
             ResultSet rs = stmt.executeQuery(SQL_query);
 
-            ArrayList<Products> sorted_products_by_rating = new ArrayList<>() ;
+            ArrayList<sign.Products> sorted_products_by_rating = new ArrayList<>() ;
 
             while(rs.next()){
                 int id = rs.getInt("ID") ;
@@ -452,7 +452,7 @@ public class DB_Products {
                 int inventory = rs.getInt("inventory") ;
                 int rating = rs.getInt("rating") ;
                 String filePath = rs.getString("filePath") ;
-                sorted_products_by_rating.add(new Products(id , category , name , price , inventory , rating , filePath)) ;
+                sorted_products_by_rating.add(new sign.Products(id , category , name , price , inventory , rating , filePath)) ;
             }
 
             rs.beforeFirst();
@@ -483,18 +483,4 @@ public class DB_Products {
 
     }
 
-
-    public static void main(String[] args) {
-        sign.DB_Products dbProducts = new sign.DB_Products() ;
-        //    System.out.println( dbProducts.getList_of_products() );
-        // System.out.println(dbProducts.find_product(2) );
-        ArrayList<Products> result1 = dbProducts.search_name("m");
-        ArrayList<Products> result2 = dbProducts.search_category("di") ;
-        // System.out.println(result2);
-        // System.out.println(dbProducts.sort_by_price()) ;
-        //  System.out.println(dbProducts.sort_by__rating());
-        Object[][] result = dbProducts.show_products_for_manager() ;
-        System.out.println(Arrays.deepToString(result));
-
-    }
 }
