@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static sign.SignIn.account;
+import static sign.SignUp.is_created;
 
 /**
  *
@@ -34,6 +35,9 @@ public class Client_Profile extends javax.swing.JFrame implements ActionListener
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+
+        if (is_created)
+            account = sign.SignUp.account;
 
         sign.DB_User userdb =  new sign.DB_User();
 

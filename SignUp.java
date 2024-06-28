@@ -10,10 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- *
  * @author mehrzad
  */
 public class SignUp extends javax.swing.JFrame implements ActionListener {
+
+    public static boolean is_created = false;
+    public static  sign.Account account;
 
     /**
      * Creates new form SignUp
@@ -228,23 +230,23 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
 
         sign.DB_User userdb = new sign.DB_User();
 
-        if(e.getSource() == jButton3){
+        if (e.getSource() == jButton3) {
             this.dispose();
             sign.Welcome welcome = new sign.Welcome();
             welcome.setVisible(true);
-        }
-
-        else if(e.getSource() == jButton1 && jRadioButton2.isSelected()){
+        } else if (e.getSource() == jButton1 && jRadioButton2.isSelected()) {
 //Sheikholeslami
             userdb.create_Account(jTextField4.getText(), jTextField3.getText(), jTextField1.getText(), jTextField6.getText(), jTextField5.getText(), jTextField2.getText(), 0, "Guest");
+            account = new sign.DB_User().search_account(jTextField4.getText(), "Guest");
+            is_created = true;
             this.dispose();
             sign.Client client = new sign.Client();
             client.setVisible(true);
-        }
-
-        else if(e.getSource() == jButton1 && jRadioButton1.isSelected()){
+        } else if (e.getSource() == jButton1 && jRadioButton1.isSelected()) {
 //Sheikholeslami
             userdb.create_Account(jTextField4.getText(), jTextField3.getText(), jTextField1.getText(), jTextField6.getText(), jTextField5.getText(), jTextField2.getText(), 0, "Admin");
+           account = new sign.DB_User().search_account(jTextField4.getText(), "Admin");
+            is_created = true;
             this.dispose();
             sign.Maneger maneger = new sign.Maneger();
             maneger.setVisible(true);
