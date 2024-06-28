@@ -5,16 +5,16 @@ import java.util.ArrayList;
 
 public class DB_Sales {
 
-    private ArrayList<Sales> sold_products = new ArrayList<>() ;
+    private ArrayList<sign.Sales> sold_products = new ArrayList<>() ;
     private final String url = "jdbc:mysql://root@localhost:3306/Store_Project" ;
     private final String username = "root" ;
     private final String password = "1284iliya" ;
 
-    public ArrayList<Sales> getSold_products() {
+    public ArrayList<sign.Sales> getSold_products(){
         return sold_products;
     }
 
-    public void setSold_products(ArrayList<Sales> sold_products) {
+    public void setSold_products(ArrayList<sign.Sales> sold_products) {
         this.sold_products = sold_products;
     }
 
@@ -49,7 +49,7 @@ public class DB_Sales {
                 String category = rs.getString("category") ;
                 int numbers = rs.getInt("numbers") ;
                 long price = rs.getLong("price") ;
-                getSold_products().add(new Sales(saleID , costumer_username , productID , name , category ,  numbers , price)) ;
+                getSold_products().add(new sign.Sales(saleID , costumer_username , productID , name , category ,  numbers , price)) ;
             }
             rs.beforeFirst();
             rs.close();
@@ -74,7 +74,7 @@ public class DB_Sales {
                 while(rs.next()){
                     if(rs.getString("saleID").equals(saleID)){
                         rs.updateInt("numbers" , rs.getInt("numbers") + 1 );
-                        rs.updateLong("price" , new DB_Products().find_product(sold_productID).getPrice() + rs.getLong("price") );
+                        rs.updateLong("price" , new sign.DB_Products().find_product(sold_productID).getPrice() + rs.getLong("price") );
                         rs.updateRow();
                         break;
                     }
@@ -84,7 +84,7 @@ public class DB_Sales {
                 for(int i = 0 ; i < getSold_products().size() ; ++i){
                     if ( getSold_products().get(i).getSaleID().equals(saleID) ){
                         getSold_products().get(i).setNumbers( getSold_products().get(i).getNumbers() + 1 );
-                        getSold_products().get(i).setPrice( getSold_products().get(i).getPrice() + new DB_Products().find_product(sold_productID).getPrice() );
+                        getSold_products().get(i).setPrice( getSold_products().get(i).getPrice() + new sign.DB_Products().find_product(sold_productID).getPrice() );
                     }
                 }
 
@@ -95,19 +95,19 @@ public class DB_Sales {
                 rs.updateString("saleID" , saleID);
                 rs.updateString("costumer_username" , username_of_costumer);
                 rs.updateInt("productID" , sold_productID);
-                rs.updateString("name" , new DB_Products().find_product(sold_productID).getName() );
-                rs.updateString("category" , new DB_Products().find_product(sold_productID).getCategory());
+                rs.updateString("name" , new sign.DB_Products().find_product(sold_productID).getName() );
+                rs.updateString("category" , new sign.DB_Products().find_product(sold_productID).getCategory());
                 rs.updateInt("numbers" , 1);
-                rs.updateLong("price" , new DB_Products().find_product(sold_productID).getPrice());
+                rs.updateLong("price" , new sign.DB_Products().find_product(sold_productID).getPrice());
 
                 rs.insertRow();
                 rs.close();
 
                 // ADD TO ARRAYLIST
-                String new_name_to_add = new DB_Products().find_product(sold_productID).getName() ;
-                String new_category_to_add = new DB_Products().find_product(sold_productID).getCategory() ;
-                long new_price_to_add = new DB_Products().find_product(sold_productID).getPrice() ;
-                getSold_products().add(new Sales(saleID , username_of_costumer , sold_productID , new_name_to_add , new_category_to_add , 1 ,  new_price_to_add)) ;
+                String new_name_to_add = new sign.DB_Products().find_product(sold_productID).getName() ;
+                String new_category_to_add = new sign.DB_Products().find_product(sold_productID).getCategory() ;
+                long new_price_to_add = new sign.DB_Products().find_product(sold_productID).getPrice() ;
+                getSold_products().add(new sign.Sales(saleID , username_of_costumer , sold_productID , new_name_to_add , new_category_to_add , 1 ,  new_price_to_add)) ;
             }
 
         }
@@ -127,9 +127,9 @@ public class DB_Sales {
         return false ;
     }
 
-    public ArrayList<Sales> find_what_costumer_bought(String costumer_username){
+    public ArrayList<sign.Sales> find_what_costumer_bought(String costumer_username){
 
-        ArrayList<Sales> purchased_products_by_specific_username = new ArrayList<>() ;
+        ArrayList<sign.Sales> purchased_products_by_specific_username = new ArrayList<>() ;
         for(int i = 0 ; i < getSold_products().size() ; ++i){
             if(getSold_products().get(i).getCustomer_userName().equals(costumer_username)){
                 purchased_products_by_specific_username.add( getSold_products().get(i) ) ;
@@ -138,15 +138,15 @@ public class DB_Sales {
         return purchased_products_by_specific_username ;
     }
 
-    public Object[][] show_for_client(ArrayList<Sales> purchased_product_for_costumer){
+    public Object[][] show_for_client(ArrayList<sign.Sales> purchased_product_for_costumer){
 
         Object[][] show_purchased_for_client = new Object[purchased_product_for_costumer.size()][4] ;
 
         for(int i = 0 ; i < purchased_product_for_costumer.size() ; ++i){
-          show_purchased_for_client[i][0] = purchased_product_for_costumer.get(i).getName() ;
-          show_purchased_for_client[i][1] = purchased_product_for_costumer.get(i).getCategory() ;
-          show_purchased_for_client[i][2] = purchased_product_for_costumer.get(i).getNumbers() ;
-          show_purchased_for_client[i][3] = purchased_product_for_costumer.get(i).getPrice() ;
+            show_purchased_for_client[i][0] = purchased_product_for_costumer.get(i).getName() ;
+            show_purchased_for_client[i][1] = purchased_product_for_costumer.get(i).getCategory() ;
+            show_purchased_for_client[i][2] = purchased_product_for_costumer.get(i).getNumbers() ;
+            show_purchased_for_client[i][3] = purchased_product_for_costumer.get(i).getPrice() ;
         }
         return show_purchased_for_client ;
     }
