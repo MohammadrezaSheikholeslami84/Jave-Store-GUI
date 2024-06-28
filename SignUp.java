@@ -6,8 +6,11 @@
 package sign;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  * @author mehrzad
@@ -15,7 +18,7 @@ import java.awt.event.ActionListener;
 public class SignUp extends javax.swing.JFrame implements ActionListener {
 
     public static boolean is_created = false;
-    public static  sign.Account account;
+    public static sign.Account account;
 
     /**
      * Creates new form SignUp
@@ -53,23 +56,137 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
         kGradientPanel1.setkStartColor(new java.awt.Color(246, 167, 167));
         kGradientPanel1.setPreferredSize(new java.awt.Dimension(1250, 710));
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField1.setText("FAMILY NAME");
-
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField2.setText("ADRESS");
+        kGradientPanel1.setkEndColor(new java.awt.Color(13, 68, 123));
+        kGradientPanel1.setkStartColor(new java.awt.Color(246, 167, 167));
+        kGradientPanel1.setPreferredSize(new java.awt.Dimension(1250, 710));
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField3.setText("FIRST NAME");
+        jTextField3.setForeground(Color.gray);
+        jTextField3.setText("First Name");
+        jTextField3.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField3.getText().equals("First Name")) {
+                    jTextField3.setForeground(Color.black);
+                    jTextField3.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField3.getText().equals("")) {
+                    jTextField3.setForeground(Color.gray);
+                    jTextField3.setText("First Name");
+                }
+            }
+        });
+
+
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField1.setForeground(Color.gray);
+        jTextField1.setText("Family Name");
+        jTextField1.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField1.getText().equals("Family Name")) {
+                    jTextField1.setForeground(Color.black);
+                    jTextField1.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField1.getText().equals("")) {
+                    jTextField1.setForeground(Color.gray);
+                    jTextField1.setText("Family Name");
+                }
+            }
+        });
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField4.setText("USERNAME");
+        jTextField4.setForeground(Color.gray);
+        jTextField4.setText("User Name");
+        jTextField4.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField4.getText().equals("User Name")) {
+                    jTextField4.setForeground(Color.black);
+                    jTextField4.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField4.getText().equals("")) {
+                    jTextField4.setForeground(Color.gray);
+                    jTextField4.setText("User Name");
+                }
+            }
+        });
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField5.setText("PASSWORD");
+        jTextField5.setForeground(Color.gray);
+        jTextField5.setText("Password");
+        jTextField5.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField5.getText().equals("Password")) {
+                    jTextField5.setForeground(Color.black);
+                    jTextField5.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField5.getText().equals("")) {
+                    jTextField5.setForeground(Color.gray);
+                    jTextField5.setText("Password");
+                }
+            }
+        });
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField6.setText("PHONE NUMBER");
+        jTextField6.setForeground(Color.gray);
+        jTextField6.setText("Phone Number");
+        jTextField6.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField6.getText().equals("Phone Number")) {
+                    jTextField6.setForeground(Color.black);
+                    jTextField6.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField6.getText().equals("")) {
+                    jTextField6.setForeground(Color.gray);
+                    jTextField6.setText("Phone Number");
+                }
+            }
+        });
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField2.setForeground(Color.gray);
+        jTextField2.setText("Address");
+        jTextField2.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField2.getText().equals("Address")) {
+                    jTextField2.setForeground(Color.black);
+                    jTextField2.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField2.getText().equals("")) {
+                    jTextField2.setForeground(Color.gray);
+                    jTextField2.setText("Address");
+                }
+            }
+        });
+
 
         jTextField7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField7.setText("CASH(IF YOU ARE CLIENT)");
@@ -234,19 +351,24 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
             this.dispose();
             sign.Welcome welcome = new sign.Welcome();
             welcome.setVisible(true);
-        } else if (e.getSource() == jButton1 && jRadioButton2.isSelected()) {
-//Sheikholeslami
+
+        } else if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected())
+            JOptionPane.showMessageDialog(this, "Choose your Account Type");
+
+        else if (e.getSource() == jButton1 && jRadioButton2.isSelected()) {
             userdb.create_Account(jTextField4.getText(), jTextField3.getText(), jTextField1.getText(), jTextField6.getText(), jTextField5.getText(), jTextField2.getText(), 0, "Guest");
             account = new sign.DB_User().search_account(jTextField4.getText(), "Guest");
             is_created = true;
+            JOptionPane.showMessageDialog(this, "Account is Created");
             this.dispose();
             sign.Client client = new sign.Client();
             client.setVisible(true);
-        } else if (e.getSource() == jButton1 && jRadioButton1.isSelected()) {
-//Sheikholeslami
+        }
+        else if (e.getSource() == jButton1 && jRadioButton1.isSelected()) {
             userdb.create_Account(jTextField4.getText(), jTextField3.getText(), jTextField1.getText(), jTextField6.getText(), jTextField5.getText(), jTextField2.getText(), 0, "Admin");
-           account = new sign.DB_User().search_account(jTextField4.getText(), "Admin");
+            account = new sign.DB_User().search_account(jTextField4.getText(), "Admin");
             is_created = true;
+            JOptionPane.showMessageDialog(this, "Account is Created");
             this.dispose();
             sign.Maneger maneger = new sign.Maneger();
             maneger.setVisible(true);

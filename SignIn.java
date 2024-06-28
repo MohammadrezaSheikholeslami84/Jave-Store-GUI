@@ -6,15 +6,18 @@
 package sign;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  * @author mehrzad
  */
 public class SignIn extends javax.swing.JFrame implements ActionListener {
 
-    public static  sign.Account account;
+    public static sign.Account account;
 
     /**
      * Creates new form SignIn
@@ -46,10 +49,48 @@ public class SignIn extends javax.swing.JFrame implements ActionListener {
         kGradientPanel1.setkStartColor(new java.awt.Color(246, 167, 167));
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField1.setText("ENTER YOUR USERNAME");
+        jTextField1.setForeground(Color.gray);
+        jTextField1.setText("UserName");
+        jTextField1.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField1.getText().equals("UserName")) {
+                    jTextField1.setForeground(Color.black);
+                    jTextField1.setText("");
+                }
+
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField1.getText().equals("")) {
+                    jTextField1.setForeground(Color.gray);
+                    jTextField1.setText("UserName");
+                }
+
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField2.setText("ENTER YOUR Password");
+        jTextField2.setForeground(Color.gray);
+        jTextField2.setText("Password");
+        jTextField2.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (jTextField2.getText().equals("Password")) {
+                    jTextField2.setForeground(Color.black);
+                    jTextField2.setText("");
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (jTextField2.getText().equals("")) {
+                    jTextField2.setForeground(Color.gray);
+                    jTextField2.setText("Password");
+                }
+            }
+        });
 
         jButton1.setText("Submit");
         jButton1.addActionListener(this);
@@ -161,61 +202,69 @@ public class SignIn extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField jTextField2;
     private sign.KGradientPanel kGradientPanel1;
 
-    public String getjTextField1() {
-        return jTextField1.getText();
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         sign.DB_User userdb = new sign.DB_User();
 
+
         if (e.getSource() == jButton4) {
             this.dispose();
             sign.Welcome welcome = new sign.Welcome();
             welcome.setVisible(true);
-        } else if (e.getSource() == jButton1 && jRadioButton2.isSelected()) {
+        }else if (!jRadioButton1.isSelected() && !jRadioButton2.isSelected())
+            JOptionPane.showMessageDialog(null, "Choose your Account Type");
+        else if (e.getSource() == jButton1 && jRadioButton2.isSelected()) {
 
-//            System.out.println(jTextField1.getText());
-//Sheikholeslami
             if (userdb.login(jTextField1.getText(), "Guest")) {
 
                 if (userdb.get_account_pass(jTextField1.getText(), "Guest").equals(jTextField2.getText())) {
 
-                    account =  new sign.DB_User().search_account(jTextField1.getText(),"Guest");
+                    account = new sign.DB_User().search_account(jTextField1.getText(), "Guest");
                     this.dispose();
                     sign.Client client = new sign.Client();
                     client.setVisible(true);
 
+                } else
+                    JOptionPane.showMessageDialog(this, "Password is Wrong");
+
+            } else {
+                int a = JOptionPane.showConfirmDialog(this, "Do you Want to Create Account ?", "Create Account", JOptionPane.YES_NO_CANCEL_OPTION);
+
+                if (a == JOptionPane.YES_OPTION) {
+                    this.dispose();
+                    sign.SignUp F = new sign.SignUp();
+                    F.setVisible(true);
+
                 }
-                else {
-                    System.out.println("password is wrong");
-                 }
-
             }
-            else {
-                System.out.println("account username cant founded");
 
-            }
         } else if (e.getSource() == jButton1 && jRadioButton1.isSelected()) {
-            //Sheikholeslami
 
             if (userdb.login(jTextField1.getText(), "Admin")) {
 
                 if (userdb.get_account_pass(jTextField1.getText(), "Admin").equals(jTextField2.getText())) {
 
-                    account =  new sign.DB_User().search_account(jTextField1.getText(),"Admin");
+                    account = new sign.DB_User().search_account(jTextField1.getText(), "Admin");
                     this.dispose();
                     sign.Maneger maneger = new sign.Maneger();
                     maneger.setVisible(true);
-                }
-                else {
-                    System.out.println("password is wrong");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Password is Wrong");
                 }
 
-            }
-            else {
-                System.out.println("account username cant founded");
+            } else {
+
+                int a = JOptionPane.showConfirmDialog(this, "Do you Want to Create Account ?", "Create Account", JOptionPane.YES_NO_CANCEL_OPTION);
+
+                if (a == JOptionPane.YES_OPTION) {
+                    this.dispose();
+                    sign.SignUp F = new sign.SignUp();
+                    F.setVisible(true);
+
+                }
+
 
             }
         }
@@ -223,4 +272,20 @@ public class SignIn extends javax.swing.JFrame implements ActionListener {
 
     }
     // End of variables declaration
+
+    public boolean check_inputs(String username, String Password) {
+
+        boolean is_fine = true;
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "User Name is Empty");
+            is_fine = false;
+        } else if (Password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Password is Empty");
+            is_fine = false;
+        }
+
+        return is_fine;
+
+
+    }
 }

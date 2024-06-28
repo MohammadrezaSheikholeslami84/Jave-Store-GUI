@@ -168,8 +168,8 @@ public class Previous_Order extends javax.swing.JFrame implements ActionListener
         }
         else if(e.getSource()==jButton4){
             this.dispose();
-            sign.Client_Profile profile = new sign.Client_Profile();
-            profile.setVisible(true);
+            sign.Client client = new sign.Client();
+            client.setVisible(true);
         }
 
     }

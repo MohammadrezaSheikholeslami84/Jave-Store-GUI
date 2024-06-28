@@ -317,13 +317,17 @@ public class Client_Profile extends javax.swing.JFrame implements ActionListener
 
         else if (e.getSource() == jButton6) {
             userdb.edit_Cash(account.getUser_name(), Long.parseLong(jTextField1.getText()), "Guest");
-         ///   JOptionPane.showMessageDialog(null, "Cash Changes Successfully");
+            JOptionPane.showMessageDialog(this, "Cash Changes Successfully");
+            this.dispose();
+            sign.Client client = new sign.Client();
+            client.setVisible(true);
 
         } else if (e.getSource() == jButton7) {
             userdb.edit_Password(account.getUser_name(), jTextField2.getText(), "Guest");
-          //  JOptionPane.showMessageDialog(null, "Password Changes Successfully");
-
-
+            JOptionPane.showMessageDialog(this, "Password Changes Successfully");
+            this.dispose();
+            sign.Client client = new sign.Client();
+            client.setVisible(true);
         }
 
     }

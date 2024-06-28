@@ -37,6 +37,7 @@ public class Client extends javax.swing.JFrame implements ActionListener {
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jButton3 = new javax.swing.JButton();
+        jToggleButton4 = new javax.swing.JToggleButton(); // New Previous Order button
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,17 +55,20 @@ public class Client extends javax.swing.JFrame implements ActionListener {
         jToggleButton2.setText("Product");
         jToggleButton2.addActionListener(this);
 
-
         jToggleButton3.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jToggleButton3.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButton3.setText("Basket");
         jToggleButton3.addActionListener(this);
 
-
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton3.setText("Sign out");
         jButton3.addActionListener(this);
+
+        jToggleButton4.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jToggleButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jToggleButton4.setText("Previous Orders"); // New Previous Order button
+        jToggleButton4.addActionListener(this);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
         kGradientPanel1.setLayout(kGradientPanel1Layout);
@@ -75,7 +79,8 @@ public class Client extends javax.swing.JFrame implements ActionListener {
                                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)) // New Previous Order button
                                 .addContainerGap(487, Short.MAX_VALUE))
                         .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton3)
@@ -90,6 +95,8 @@ public class Client extends javax.swing.JFrame implements ActionListener {
                                 .addComponent(jToggleButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
                                 .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42) // Adjusted gap
+                                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE) // New Previous Order button
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
                                 .addComponent(jButton3))
         );
@@ -152,40 +159,32 @@ public class Client extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton jToggleButton4; // New Previous Order button
     private sign.KGradientPanel kGradientPanel1;
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == jButton3){
+        if (e.getSource() == jButton3) {
             this.dispose();
             sign.Welcome F = new sign.Welcome();
             F.setVisible(true);
-        }
-        else if(e.getSource() == jToggleButton1){
+        } else if (e.getSource() == jToggleButton1) {
             this.dispose();
             sign.Client_Profile F = new sign.Client_Profile();
             F.setVisible(true);
-
-        }
-
-         else if(e.getSource() == jToggleButton3){
-             System.out.println("hi basket");
-
-             this.dispose();
+        } else if (e.getSource() == jToggleButton3) {
+            this.dispose();
             sign.Basket b = new sign.Basket();
             b.setVisible(true);
-
-        }
-
-       else if(e.getSource() == jToggleButton2){
-             System.out.println("hi product client");
-
-             this.dispose();
+        } else if (e.getSource() == jToggleButton2) {
+            this.dispose();
             sign.Product_client p = new sign.Product_client();
             p.setVisible(true);
-
+        } else if (e.getSource() == jToggleButton4) { // Action for Previous Order button
+            this.dispose();
+            sign.Previous_Order po = new sign.Previous_Order();
+            po.setVisible(true);
         }
-
     }
     // End of variables declaration
 }
