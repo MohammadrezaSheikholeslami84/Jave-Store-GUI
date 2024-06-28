@@ -1,6 +1,6 @@
 package sign;
+import sign.Products;
 
-import java.lang.reflect.Array;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -214,31 +214,31 @@ public class DB_Products {
         }
         if(is_find_for_edit){
             //FIRST WE SHOULD EDIT PRICE IN DATABASE
-                try{
-                    Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
-                    Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-                    String SQL_query = "SELECT * FROM Products";
-                    ResultSet rs = stmt.executeQuery(SQL_query);
+            try{
+                Connection con = DriverManager.getConnection(getUrl() , getUsername() , getPassword());
+                Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+                String SQL_query = "SELECT * FROM Products";
+                ResultSet rs = stmt.executeQuery(SQL_query);
 
-                    while(rs.next()){
-                        if(rs.getInt("ID") == wanted_id){
-                            rs.updateLong("price" , new_price);
-                            rs.updateRow();
-                            break;
-                        }
+                while(rs.next()){
+                    if(rs.getInt("ID") == wanted_id){
+                        rs.updateLong("price" , new_price);
+                        rs.updateRow();
+                        break;
                     }
                 }
-                catch (SQLException e){
-                    System.out.println(e.getMessage());
-                }
+            }
+            catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
 
-                //NOW WE SHOULD EDIT THE ARRAYLIST
-              for(int i = 0 ;  i < getList_of_products().size() ; ++i){
-                  if (getList_of_products().get(i).getID() == wanted_id){
-                      getList_of_products().get(i).setPrice(new_price) ;
-                      break;
-                  }
-              }
+            //NOW WE SHOULD EDIT THE ARRAYLIST
+            for(int i = 0 ;  i < getList_of_products().size() ; ++i){
+                if (getList_of_products().get(i).getID() == wanted_id){
+                    getList_of_products().get(i).setPrice(new_price) ;
+                    break;
+                }
+            }
 
         }
         else{
@@ -479,20 +479,20 @@ public class DB_Products {
             all_products_for_table[i][5] = getList_of_products().get(i).getRating() ;
             all_products_for_table[i][6] = getList_of_products().get(i).getFilePath() ;
         }
-       return all_products_for_table ;
+        return all_products_for_table ;
 
     }
 
 
     public static void main(String[] args) {
-        DB_Products dbProducts = new DB_Products() ;
-     //    System.out.println( dbProducts.getList_of_products() );
+        sign.DB_Products dbProducts = new sign.DB_Products() ;
+        //    System.out.println( dbProducts.getList_of_products() );
         // System.out.println(dbProducts.find_product(2) );
         ArrayList<Products> result1 = dbProducts.search_name("m");
         ArrayList<Products> result2 = dbProducts.search_category("di") ;
-       // System.out.println(result2);
-       // System.out.println(dbProducts.sort_by_price()) ;
-      //  System.out.println(dbProducts.sort_by__rating());
+        // System.out.println(result2);
+        // System.out.println(dbProducts.sort_by_price()) ;
+        //  System.out.println(dbProducts.sort_by__rating());
         Object[][] result = dbProducts.show_products_for_manager() ;
         System.out.println(Arrays.deepToString(result));
 
