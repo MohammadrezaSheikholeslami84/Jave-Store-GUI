@@ -43,8 +43,6 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
@@ -188,17 +186,6 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
         });
 
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField7.setText("CASH(IF YOU ARE CLIENT)");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-
-        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTextField8.setText("KEY(IF YOU ARE MANEGER)");
-
         jButton1.setText("Submit");
         jButton1.addActionListener(this);
 
@@ -229,8 +216,6 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
                                                 .addGap(75, 75, 75)
                                                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(kGradientPanel1Layout.createSequentialGroup()
                                                 .addGap(180, 180, 180)
@@ -246,11 +231,13 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
                                 .addGap(125, 125, 125)
                                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                   //     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        )
                                 .addGap(18, 18, 18)
                                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        //.addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        )
                                 .addGap(18, 18, 18)
                                 .addGroup(kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(kGradientPanel1Layout.createSequentialGroup()
@@ -338,8 +325,7 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+
     private sign.KGradientPanel kGradientPanel1;
 
     @Override
@@ -376,4 +362,6 @@ public class SignUp extends javax.swing.JFrame implements ActionListener {
 
     }
     // End of variables declaration
+
+
 }
