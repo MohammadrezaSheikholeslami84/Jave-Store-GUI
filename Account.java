@@ -1,7 +1,8 @@
+package sign;
+
 import java.util.ArrayList;
 
 public class Account {
-
     private String user_name;
     private String name;
     private String familyname;
