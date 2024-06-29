@@ -50,7 +50,7 @@ public class DB_User {
     }
 
     public boolean create_Account(String user_name_input, String name_input, String familyname_input, String phonenumber_input,
-                                  String password_input, String address_input, long cash_input, String UserType)  {
+                                  String password_input, String address_input, long cash_input, String UserType) {
 
         boolean is_new = false;
 
@@ -64,8 +64,7 @@ public class DB_User {
             }
 
 
-        }
-        catch (SQLException e){
+        } catch (SQLException e) {
 
         }
 
@@ -204,19 +203,54 @@ public class DB_User {
 
     }
 
+
+    public void edit_cash_for_admin(long newCash){
+
+        // UPDATE DATABASE
+        try {
+            Connection con = DriverManager.getConnection(db_address , username , password);
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String SQL_query = "SELECT * FROM users";
+            ResultSet rs = stmt.executeQuery(SQL_query);
+
+            while(rs.next()){
+                if(rs.getString("UserType").equals("Admin")){
+                    rs.updateLong("Cash" , newCash);
+                    rs.updateRow();
+
+                }
+            }
+
+            rs.close();
+
+        }
+        catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        // ARRAYLIST UPDATED
+        for(int i = 0 ; i <account.size() ; ++i){
+            if(account.get(i).getUserType().equals("Admin")){
+                account.get(i).setCash(newCash);
+            }
+
+        }
+    }
+
     public Object[][] AccountTableData_ArrayList() {
-        int columns = 4, rows = 0, aux = 0;
+        int columns = 5, rows = 0, aux = 0;
 
         List<Object> AccountList = new ArrayList<>();
 
         for (int i = 0; i < account.size(); i++) {
 
-
-            AccountList.add(account.get(i).getUser_name());
-            AccountList.add(account.get(i).getName());
-            AccountList.add(account.get(i).getFamilyname());
-            AccountList.add(account.get(i).getPhonenumber());
-            rows++;
+            if (account.get(i).getUserType().equals("Guest")) {
+                AccountList.add(account.get(i).getUser_name());
+                AccountList.add(account.get(i).getName());
+                AccountList.add(account.get(i).getFamilyname());
+                AccountList.add(account.get(i).getPhonenumber());
+                AccountList.add(new sign.DB_Sales().total_purchased(account.get(i).getUser_name()));
+                rows++;
+            }
 
 
         }
