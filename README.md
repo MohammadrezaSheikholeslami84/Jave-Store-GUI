@@ -1,8 +1,6 @@
 # Jave-Store-GUI
 
 
-
-
 # Java Store GUI
 
 ## A brief description of what this project does and who it's for : 
@@ -17,6 +15,16 @@ In this project, you should handle these parts:
 
 
 
+## Features
+
+- **User Authentication**: Admin and Client login functionality.
+- **Product Management**: Admin can add, update, and delete products.
+- **User Management**: Admin can manage user accounts.
+- **Shopping Functionality**: Clients can browse products, add them to a cart, and purchase items.
+- **Order History**: Clients can view their purchase history.
+- **Data Persistence**: Uses SQL to store data for products, users, and sold products.
+
+  
 
 ## Acknowledgements
 
@@ -47,7 +55,14 @@ This Program contains database ( MySQL) and different operations on database ; s
 - [@Mhrzad](https://github.com/Mhrzad)
 
 
+## Contributing
 
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a Pull Request.
 
 
 
@@ -92,3 +107,5 @@ This Program contains database ( MySQL) and different operations on database ; s
 
 # $\color{green}{\textit{Admin Products Page}}$
 ![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/4a930cc3-6ff2-4231-94ae-3e589947e03d)
+
+
