@@ -3,7 +3,7 @@ package sign;
 public class Sales {
 
     private String saleID;
-    private String customer_username;
+    private String costumer_username;
     private int productID ;
     private String name ;
     private String category ;
@@ -12,7 +12,7 @@ public class Sales {
 
     public Sales(String saleID, String costumer_username, int productID, String name , String category , int numbers, long price) {
         this.saleID = saleID;
-        this.customer_username = costumer_username ;
+        this.costumer_username = costumer_username ;
         this.productID = productID ;
         this.name = name ;
         this.category = category ;
@@ -28,12 +28,12 @@ public class Sales {
         this.saleID = saleID;
     }
 
-    public String getCustomer_userName() {
-        return customer_username;
+    public String getCostumer_username() {
+        return costumer_username;
     }
 
-    public void setCustomer_userName(String customer_userName) {
-        this.customer_username = customer_userName;
+    public void setCostumer_username(String costumer_username) {
+        this.costumer_username = costumer_username;
     }
 
     public int getProductID() {

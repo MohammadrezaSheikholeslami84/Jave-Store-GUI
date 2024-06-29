@@ -9,7 +9,7 @@ import java.util.regex.*;
 
 public class DB_Products {
     private ArrayList<sign.Products> list_of_products = new ArrayList<>() ;
-    private final String url = "jdbc:mysql://root@localhost:3306/Store_Project" ;
+    private final String url = "jdbc:mysql://localhost:3306/Store_Project" ;
     private final String username = "root" ;
     private final String password = "1284iliya" ;
 
@@ -384,7 +384,7 @@ public class DB_Products {
             Matcher matcher_name = search_pattern.matcher(getList_of_products().get(i).getName()) ;
             while (matcher_name.find()) {
                 found_products.add(getList_of_products().get(i)) ;
-              //  System.out.println(STR."Match found: \{matcher_name.group()}");
+                //  System.out.println(STR."Match found: \{matcher_name.group()}");
             }
         }
         return found_products ;
@@ -398,7 +398,7 @@ public class DB_Products {
             Matcher matcher_category = search_pattern.matcher(getList_of_products().get(i).getCategory()) ;
             while (matcher_category.find()) {
                 found_products.add(getList_of_products().get(i)) ;
-              //  System.out.println(STR."Match found: \{matcher_category.group()}");
+                //  System.out.println(STR."Match found: \{matcher_category.group()}");
             }
         }
         return found_products ;

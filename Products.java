@@ -1,11 +1,5 @@
 package sign;
 
-import java.lang.classfile.attribute.StackMapTableAttribute;
-import java.sql.*;
-import java.util.ArrayList;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Products{
     private int ID ;
     private String category ;

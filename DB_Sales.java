@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class DB_Sales {
 
     private ArrayList<sign.Sales> sold_products = new ArrayList<>() ;
-    private final String url = "jdbc:mysql://root@localhost:3306/Store_Project" ;
+    private final String url = "jdbc:mysql://localhost:3306/Store_Project" ;
     private final String username = "root" ;
     private final String password = "1284iliya" ;
 
@@ -43,7 +43,7 @@ public class DB_Sales {
 
             while(rs.next()){
                 String saleID = rs.getString("saleID") ;
-                String costumer_username = rs.getString("customer_username") ;
+                String costumer_username = rs.getString("costumer_username") ;
                 int productID = rs.getInt("productID") ;
                 String name = rs.getString("name") ;
                 String category = rs.getString("category") ;
@@ -60,7 +60,7 @@ public class DB_Sales {
 
     }
 
-    public void add_sold_product(String saleID , String username_of_costumer , int sold_productID ){
+    public void add_sold_product(String saleID , String username_of_costumer , int sold_productID , int number , long price ){
 
         try {
 
@@ -73,12 +73,13 @@ public class DB_Sales {
             if (does_saleID_exist) {
                 while(rs.next()){
                     if(rs.getString("saleID").equals(saleID)){
-                        rs.updateInt("numbers" , rs.getInt("numbers") + 1 );
-                        rs.updateLong("price" , new sign.DB_Products().find_product(sold_productID).getPrice() + rs.getLong("price") );
+
+                        rs.updateInt("numbers" , number );
+                        rs.updateLong("price" , price );
                         rs.updateRow();
+                        rs.close();
                         break;
                     }
-                    rs.close();
                 }
                 //  NOW CHANGE THE ARRAYLIST
                 for(int i = 0 ; i < getSold_products().size() ; ++i){
@@ -89,6 +90,7 @@ public class DB_Sales {
                 }
 
             }
+
 
             if( !(does_saleID_exist) ){
                 rs.moveToInsertRow();
@@ -131,7 +133,7 @@ public class DB_Sales {
 
         ArrayList<sign.Sales> purchased_products_by_specific_username = new ArrayList<>() ;
         for(int i = 0 ; i < getSold_products().size() ; ++i){
-            if(getSold_products().get(i).getCustomer_userName().equals(costumer_username)){
+            if(getSold_products().get(i).getCostumer_username().equals(costumer_username)){
                 purchased_products_by_specific_username.add( getSold_products().get(i) ) ;
             }
         }
@@ -150,16 +152,41 @@ public class DB_Sales {
         }
         return show_purchased_for_client ;
     }
+
+    public long total_purchased(String costumer_username){
+
+        ArrayList<sign.Sales> purchased = new ArrayList<>() ;
+        purchased = find_what_costumer_bought(costumer_username) ;
+        long all_purchased_amount = 0 ;
+
+        for(int i = 0 ; i < purchased.size() ; ++i){
+            all_purchased_amount += purchased.get(i).getPrice() ;
+        }
+        return all_purchased_amount ;
+    }
+
     public Object[][] show_for_manager(){
 
-        Object[][] show_sold_products_for_manager = new Object[getSold_products().size()][4] ;
+        Object[][] show_sold_products_for_manager = new Object[getSold_products().size()][6] ;
 
         for(int i = 0 ; i < getSold_products().size() ; ++i){
-            show_sold_products_for_manager[i][0] = getSold_products().get(i).getName() ;
-            show_sold_products_for_manager[i][1] = getSold_products().get(i).getCategory() ;
-            show_sold_products_for_manager[i][2] = getSold_products().get(i).getNumbers() ;
-            show_sold_products_for_manager[i][3] = getSold_products().get(i).getPrice() ;
+            show_sold_products_for_manager[i][0] = new sign.DB_User().search_account( getSold_products().get(i).getCostumer_username() , "Guest").getName() + " " +
+                    new sign.DB_User().search_account( getSold_products().get(i).getCostumer_username() , "Guest").getFamilyname() ;
+            show_sold_products_for_manager[i][1] = getSold_products().get(i).getProductID() ;
+            show_sold_products_for_manager[i][2] = getSold_products().get(i).getCategory() ;
+            show_sold_products_for_manager[i][3] = getSold_products().get(i).getName() ;
+            show_sold_products_for_manager[i][4] = getSold_products().get(i).getNumbers() ;
+            show_sold_products_for_manager[i][5] = getSold_products().get(i).getPrice() ;
         }
         return show_sold_products_for_manager ;
+    }
+    public sign.Sales find_sold_product(String saleID){
+
+        for(int i = 0 ; i<getSold_products().size() ; ++i){
+            if(getSold_products().get(i).getSaleID().equals(saleID)){
+                return getSold_products().get(i) ;
+            }
+        }
+        return null ;
     }
 }
