@@ -50,7 +50,7 @@ This Program contains database ( MySQL) and different operations on database ; s
 
 
 
-## Demo
+# Demo
 
 # $\color{green}{\textit{Starting Panel}}$
 ![App Screenshot](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/153519525/46dc8955-a470-4094-bdfd-aad4e146d16e)
@@ -67,3 +67,27 @@ This Program contains database ( MySQL) and different operations on database ; s
 
 # $\color{green}{\textit{Create account}}$
 ![App Screenshot](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/153519525/11336288-8966-4373-86a8-12057435ae72)
+
+# $\color{green}{\textit{Clients Page}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/c1a3a9e8-a340-4509-9473-42e876233181)
+
+# $\color{green}{\textit{Profile Page}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/78524c76-bd3d-473f-ae49-543b9bee24d7)
+
+# $\color{green}{\textit{Client Products Page}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/4b827313-fe00-4b44-91bf-6d9c3db54536)
+
+# $\color{green}{\textit{Previous Orders Page}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/2d71ae97-b3fa-497d-8c62-93932ff16ff2)
+
+# $\color{green}{\textit{Admin Income}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/2015975f-8f89-41c4-8ef8-ef56c4f616a7)
+
+# $\color{green}{\textit{Clients List}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/d0212ed2-3476-4af7-b7e4-682c0ea99a08)
+
+# $\color{green}{\textit{Sold Products}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/bc8bcbef-3afc-4bca-9859-b5993a27f9a4)
+
+# $\color{green}{\textit{Admin Products Page}}$
+![image](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/166950228/4a930cc3-6ff2-4231-94ae-3e589947e03d)
