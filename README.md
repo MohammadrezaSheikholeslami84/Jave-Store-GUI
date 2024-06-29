@@ -9,6 +9,14 @@
 This project is a $\color{green}{\textit{Store Project}}$ which is something like amazon.com and other online shops and applications. This program is written in $\color{green}{\textit{Java}}$ language and has graphic part(GUI) , $\color{green}{\textit{MySQL database}}$ and many methods which handle many different parts of program.In this project you will see the importance of $\color{green}{\textit{OOP}}$($\color{green}{\textit{Object-}}$ $\color{green}{\textit{Oriented Programming}}$) and also having information about something like $\color{green}{\textit{SOLID Principles}}$ will help you.In other parts , you will see some pictures and a demo of project.This project is good for those who are learning Java in an advanced level and are looking for a project to do and practice.
 
 
+In this project, you should handle these parts: 
+
+1.having a client profile and also show the client all of the products in the store and , the client's basket and previus orders of client.
+2.having a manager panel which includes showing all products, sold products and total income of the store and a list of all of the clients.
+
+
+
+
 ## Acknowledgements
 
 # $\color{#D29922}\textsf{\Large\&#x26A0;\kern{0.2cm}\normalsize Warning}$  
