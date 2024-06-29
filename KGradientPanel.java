@@ -57,10 +57,6 @@ public class KGradientPanel extends JPanel {
         this.kGradientFocus = kGradientFocus;
     }
 
-
-
-
-
     public KGradientPanel() {
 
         if (kTransparentControls) {
