@@ -20,3 +20,12 @@ First , think about that why it's better to use database and MySQL and also thin
  - [How to search an element in Java JTable](https://stackoverflow.com/questions/22066387/how-to-search-an-element-in-a-jtable-java)
  - [How to Sort rows in JTable by columns](https://stackoverflow.com/questions/28823670/how-to-sort-jtable-in-shortest-way)
 
+
+
+## Appendix
+
+# $\color{#58A6FF}\textsf{\Large\&#x24D8;\kern{0.2cm}\normalsize Note}$
+
+This Program contains database ( MySQL) and different operations on database ; something like add , delete , insert and some other operations.Because of using MySQL you should add mysql-connector library to your library.Check the link below to get the library. 
+
+[Download MySQL-connector Library](https://dev.mysql.com/downloads/connector/j/)
