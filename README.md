@@ -12,6 +12,7 @@ This project is a $\color{green}{\textit{Store Project}}$ which is something lik
 In this project, you should handle these parts: 
 
 1.having a client profile and also show the client all of the products in the store and , the client's basket and previous orders of client.
+
 2.having a manager panel which includes showing all products, sold products and total income of the store and a list of all of the clients.
 
 
