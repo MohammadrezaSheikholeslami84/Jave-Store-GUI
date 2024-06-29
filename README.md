@@ -48,6 +48,8 @@ This Program contains database ( MySQL) and different operations on database ; s
 
 
 
+
+
 ## Demo
 
 # $\color{green}{\textit{Starting Panel}}$
@@ -59,3 +61,9 @@ This Program contains database ( MySQL) and different operations on database ; s
 # $\color{green}{\textit{Wrong password}}$
 ![App Screenshot](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/153519525/2bc0724b-8f85-405f-b584-b7c3cb9d2350)
 
+
+# $\color{green}{\textit{Wrong phoneNumber}}$
+![App Screenshot](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/153519525/8722c3cb-8e42-4298-8cde-853e21a84d52)
+
+# $\color{green}{\textit{Create account}}$
+![App Screenshot](https://github.com/MohammadrezaSheikholeslami84/Jave-Store-GUI/assets/153519525/11336288-8966-4373-86a8-12057435ae72)
