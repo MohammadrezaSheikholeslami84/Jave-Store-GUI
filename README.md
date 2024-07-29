@@ -1,6 +1,3 @@
-# Jave-Store-GUI
-
-
 # Java Store GUI
 
 ## A brief description of what this project does and who it's for : 
